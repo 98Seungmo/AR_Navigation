@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.cesium.unity": {
-      "version": "file:D:/googlechromednld/com.cesium.unity-1.9.0.tgz",
+      "version": "file:C:/Users/hong2/Downloads/com.cesium.unity-1.9.0.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
