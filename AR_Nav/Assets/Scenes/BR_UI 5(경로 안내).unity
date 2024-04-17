@@ -1841,7 +1841,7 @@ GameObject:
   - component: {fileID: 2023915176}
   - component: {fileID: 2023915175}
   m_Layer: 0
-  m_Name: "InputField (\uCD9C\uBC1C\uC9C0 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4)"
+  m_Name: "InputField (\uB3C4\uCC29\uC9C0 \uD14D\uC2A4\uD2B8 \uBC15\uC2A4)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
