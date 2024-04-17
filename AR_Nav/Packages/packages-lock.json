@@ -1,5 +1,27 @@
 {
   "dependencies": {
+    "com.cesium.unity": {
+      "version": "file:C:/Users/hong2/Downloads/com.cesium.unity-1.9.0.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {
+        "com.unity.mathematics": "1.2.0",
+        "com.unity.test-framework": "1.1.31",
+        "com.unity.shadergraph": "12.1.6",
+        "com.unity.inputsystem": "1.4.2"
+      }
+    },
+    "com.google.ar.core.arfoundation.extensions": {
+      "version": "https://github.com/google-ar/arcore-unity-extensions.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.xr.arfoundation": "4.1.5",
+        "com.unity.xr.arcore": "4.1.5",
+        "com.unity.xr.arkit": "4.1.5"
+      },
+      "hash": "a7adcde95fc45832551ea939db3d6876a7365b7b"
+    },
     "com.unity.burst": {
       "version": "1.8.11",
       "depth": 1,
