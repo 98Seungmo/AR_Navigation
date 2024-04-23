@@ -261,8 +261,9 @@ GameObject:
   - component: {fileID: 21887104}
   - component: {fileID: 21887103}
   - component: {fileID: 21887102}
+  - component: {fileID: 21887105}
   m_Layer: 5
-  m_Name: "Button(\uB4A4\uB85C\uAC00\uAE30 <  \uBC84\uD2BC)"
+  m_Name: Button(Back)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,18 +276,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21887100}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 72098731}
-  m_Father: {fileID: 225502763}
+  m_Father: {fileID: 58549648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 100, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 624.08374, y: -481.80005}
+  m_SizeDelta: {x: -1400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &21887102
 MonoBehaviour:
@@ -331,7 +332,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 21887103}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 21887105}
+        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
+        m_MethodName: SwitchScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &21887103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -345,14 +358,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.048891068, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: bbfe293d71acfb94c9a2636c02461efb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -370,6 +383,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 21887100}
   m_CullTransparentMesh: 1
+--- !u!114 &21887105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 21887100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5423ee7a0dafc145862c23a7cf4e733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSceneName: BR_UI 2(LocalMark)
 --- !u!1 &58549647
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +429,7 @@ RectTransform:
   - {fileID: 225502763}
   - {fileID: 87977079}
   - {fileID: 1179213294}
+  - {fileID: 21887101}
   m_Father: {fileID: 2001868905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -505,7 +532,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1363,8 +1390,7 @@ GameObject:
   - component: {fileID: 225502765}
   - component: {fileID: 225502764}
   m_Layer: 5
-  m_Name: "InputField (\uD130\uCE58 \uC2DC \uD0A4\uBCF4\uB4DC \uC790\uD310 \uD65C\uC131\uD654
-    \uD544\uC218 \uAE30\uB2A5)"
+  m_Name: 'InputField '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1383,13 +1409,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1662020653}
-  - {fileID: 21887101}
   m_Father: {fileID: 58549648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -481.8}
-  m_SizeDelta: {x: -200, y: 194.5}
+  m_AnchoredPosition: {x: -197.45813, y: -481.8}
+  m_SizeDelta: {x: -594.9163, y: 194.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &225502764
 MonoBehaviour:
@@ -1969,8 +1994,7 @@ GameObject:
   - component: {fileID: 1179213296}
   - component: {fileID: 1179213295}
   m_Layer: 5
-  m_Name: "Scroll View(\uCD5C\uADFC \uAC80\uC0C9 \uBAA9\uB85D \uC2A4\uD06C\uB864
-    \uBDF0)"
+  m_Name: Scroll View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2011,7 +2035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Content: {fileID: 0}
+  m_Content: {fileID: 1971467483}
   m_Horizontal: 1
   m_Vertical: 1
   m_MovementType: 1
@@ -2507,8 +2531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1735943126}
   m_Layer: 5
-  m_Name: "Content (1) (\uAC01 \uAD6C\uC131\uC694\uC18C\uB9C8\uB2E4 x \uBC84\uD2BC
-    \uD544\uC694)"
+  m_Name: Content (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2815,8 +2838,7 @@ GameObject:
   - component: {fileID: 1971467485}
   - component: {fileID: 1971467484}
   m_Layer: 5
-  m_Name: "Viewport(\uD558\uC704 \uCEE8\uD150\uCE20\uC5D0 \uB370\uC774\uD130 \uBC30\uC5F4
-    \uD544\uC694)"
+  m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

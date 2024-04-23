@@ -8,10 +8,10 @@ using UnityEngine.UI;
 public class MapManager : MonoBehaviour
 {
     public RawImage mapRawImage;
-    public GoogleMapsAPI googleMapsAPI;
+    //public GoogleMapsAPI googleMapsAPI;
 
     [Header("¸Ê Á¤º¸ ¼³Á¤")]
-    public string strBaseURL = "https://maps.googleapis.com/maps/api/staticmap?";
+    //public string strBaseURL = "https://maps.googleapis.com/maps/api/staticmap?";
     public double latitude = 37.7136;
     public double longitude = 126.7435;
     public int zoom = 14;
@@ -31,7 +31,7 @@ public class MapManager : MonoBehaviour
 
     IEnumerator LoadMap()
     {
-        string url = strBaseURL + "center=" + latitude + "," + longitude +
+        string url = "https://maps.googleapis.com/maps/api/staticmap?" + "center=" + latitude + "," + longitude +
             "&zoom=" + zoom + "&size=" + mapWidth + "x" + mapHeight +
             "&key=" + APIKey;
 

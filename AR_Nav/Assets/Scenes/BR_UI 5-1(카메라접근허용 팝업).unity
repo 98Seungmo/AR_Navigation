@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 1348283801}
   - component: {fileID: 1348283800}
   m_Layer: 5
-  m_Name: "Button(\uD5C8\uC6A9 \uC54A\uD568)"
+  m_Name: "Button(\uD5C8\uC6A9 \uC548\uD568)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

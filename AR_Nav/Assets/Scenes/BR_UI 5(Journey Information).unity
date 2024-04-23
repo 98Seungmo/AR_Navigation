@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 8449765}
   - component: {fileID: 8449764}
   - component: {fileID: 8449763}
+  - component: {fileID: 8449766}
   m_Layer: 5
   m_Name: "Button(\uB4A4\uB85C\uAC00\uAE30 \uBC84\uD2BC)"
   m_TagString: Untagged
@@ -205,7 +206,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8449764}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8449766}
+        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
+        m_MethodName: SwitchScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8449764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,6 +257,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8449761}
   m_CullTransparentMesh: 1
+--- !u!114 &8449766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8449761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5423ee7a0dafc145862c23a7cf4e733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSceneName: BR_UI 3(Search)
 --- !u!1 &368215795
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,6 +974,7 @@ GameObject:
   - component: {fileID: 1047194590}
   - component: {fileID: 1047194589}
   - component: {fileID: 1047194588}
+  - component: {fileID: 1047194591}
   m_Layer: 5
   m_Name: "Button(AR\uAE38\uC548\uB0B4 \uC2DC\uC791 \uBC84\uD2BC)"
   m_TagString: Untagged
@@ -1018,7 +1045,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1047194589}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1047194591}
+        m_TargetAssemblyTypeName: SceneSwitcher, Assembly-CSharp
+        m_MethodName: SwitchScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1047194589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,6 +1096,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047194586}
   m_CullTransparentMesh: 1
+--- !u!114 &1047194591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047194586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5423ee7a0dafc145862c23a7cf4e733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetSceneName: "BR_UI 6(AR\uAE38 \uC548\uB0B4)"
 --- !u!1 &1060399904
 GameObject:
   m_ObjectHideFlags: 0

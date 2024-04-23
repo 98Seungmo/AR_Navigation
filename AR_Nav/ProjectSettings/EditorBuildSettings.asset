@@ -8,6 +8,33 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01_Scenes/SM/SDK_TestScene.unity
     guid: 0697f36396769234abe16af9d58d741d
+  - enabled: 1
+    path: "Assets/Scenes/BR_UI 1(\uB85C\uB529\uD654\uBA74).unity"
+    guid: eab114d282f413046af39af154772593
+  - enabled: 1
+    path: "Assets/Scenes/BR_UI 1-1(\uC704\uCE58\uC815\uBCF4\uD5C8\uC6A9 \uD31D\uC5C5).unity"
+    guid: 82743ffa00d283c4283de922010729f2
+  - enabled: 1
+    path: Assets/Scenes/BR_UI 2(LocalMark).unity
+    guid: 4687c1386c3f66042baca0ccb3e6f0af
+  - enabled: 1
+    path: Assets/Scenes/BR_UI 3(Search).unity
+    guid: e39bcf1420467a64984d8d466df94e0d
+  - enabled: 1
+    path: "Assets/Scenes/BR_UI 4(\uBAA9\uC801\uC9C0 \uD504\uB9AC\uBDF0).unity"
+    guid: f3523d4a502ed344d85e434e76abcf2a
+  - enabled: 1
+    path: Assets/Scenes/BR_UI 5(Journey Information).unity
+    guid: 8204003afe7af044d8757c270ac12ab9
+  - enabled: 1
+    path: "Assets/Scenes/BR_UI 5-1(\uCE74\uBA54\uB77C\uC811\uADFC\uD5C8\uC6A9 \uD31D\uC5C5).unity"
+    guid: 541fee3df199f114698ade85a6104aec
+  - enabled: 1
+    path: "Assets/Scenes/BR_UI 6(AR\uAE38 \uC548\uB0B4).unity"
+    guid: b9dd4ac52baf0ec48abb31def5b1f142
+  - enabled: 1
+    path: "Assets/Scenes/BR_UI 7(\uBAA9\uC801\uC9C0 \uB3C4\uCC29).unity"
+    guid: 00efd26cd2867f344acb51f758408311
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6ee72d15cf39dd748a13eac57397b9af,
       type: 2}
