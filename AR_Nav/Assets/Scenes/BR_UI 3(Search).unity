@@ -504,6 +504,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Panel(\uBC30\uACBD \uD328\uB110)"
       objectReference: {fileID: 0}
+    - target: {fileID: 5553738886489095774, guid: abd71558a06b780478254c824871724a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8862222790988713585, guid: abd71558a06b780478254c824871724a,
         type: 3}
       propertyPath: m_Pivot.x

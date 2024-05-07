@@ -63,6 +63,7 @@
     <Compile Include="Assets\02_Scripts\SM\MapManager.cs" />
     <Compile Include="Assets\Samples\ARCore Extensions\1.42.0\Geospatial Sample\Scripts\SafeAreaScaler.cs" />
     <Compile Include="Assets\02_Scripts\SM\GoogleMapsAPI.cs" />
+    <Compile Include="Assets\02_Scripts\SceneLoader.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\UI\Scripts\CutoutMaskUI.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\ARTemplateMenuManager.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\ARFeatheredPlaneMeshVisualizerCompanion.cs" />
