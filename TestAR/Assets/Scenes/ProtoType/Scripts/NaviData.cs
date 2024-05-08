@@ -49,6 +49,7 @@ public class Term
     public string value;
 }
 #endregion
+
 #region PlaceDetails
 /**
  * @brief PlaceAPI의 PlaceDetails에서 Json 파일들의 클래스를 정의 
@@ -96,7 +97,11 @@ public class AddressComponent
     public List<string> types;
 }
 #endregion
+
 #region DirectionAPI
+/**
+ * @brief DirectionAPI 에서 Json 파일들의 클래스를 정의
+ */
 [System.Serializable]
 public class DirectionsResponse
 {
@@ -285,6 +290,7 @@ public class OverviewPolyline
     public string points;
 }
 #endregion
+
 #region SearchHistoryData
 /** 
  * @brief 검색기록에 관련된 데이터 저장 */
@@ -301,7 +307,12 @@ public class SearchItem
     public string placeId;
 }
 #endregion
+
 #region Vector2d
+/**
+ * @brief double 타입 필드를 통해 Vector2를 사용하기 위한 클래스
+ * Vector간 수학적 계산을 위해 연산자 오버로딩 사용
+ */
 public class Vector2d
 {
     public double x;
@@ -337,6 +348,7 @@ public class Vector2d
     }
 }
 #endregion
+
 #region Configuration ApiKey, BaseUrl
 /**
  * @brief URL 및 APIKEY를 모든 스크립트에서 접근할 수 있게 해줌 
@@ -354,10 +366,10 @@ public static class Configuration
 public class NaviData : MonoBehaviour
 {
     #region Variables
-    public static NaviData Instance { get; private set; }  
+    public static NaviData Instance { get; private set; }  ///< NaviData.cs 싱글톤 패턴
 
     public string PlaceId { get; private set; } ///< Place_ID
-    public string addressComponentsDescription { get; private set; }
+    public string addressComponentsDescription { get; private set; } ///< 주소컴포넌트를 string으로 변환한 변수
 
     [Header("Location")]
     private bool _waitingForLocationService = false;  ///< 위치서비스 허용여부
@@ -366,7 +378,7 @@ public class NaviData : MonoBehaviour
     /* 검색기록 */
     private SearchHistoryData _searchHistoryData = new SearchHistoryData(); ///< 검색기록 데이터 초기화
 
-    public SearchHistoryData searchHistoryData
+    public SearchHistoryData searchHistoryData ///< private 접근 가능하게 해줌
     {
         get { return _searchHistoryData; }
         set { _searchHistoryData = value; }
@@ -378,19 +390,15 @@ public class NaviData : MonoBehaviour
     public PlaceDetailsResponse placeInfoResponse { get; set; } ///< PlaceDetails Location 참조
     public PlaceDetailsResponse placeDetailsResponse { get; set; } ///< PlaceDetails 의 상세정보 참조
 
-        /* 목적지 위치 저장 */
-    public Location destinationLocation { get; set; }
+    public Location destinationLocation { get; set; } ///< 목적지 위치 저장
 
-    /* Map API 지도 Zoom Level */
-    private int _zoom = 17;
-    /* 경로 탐색시 Zoom Level */
-    private int _routeZoom = 15;
-    /* 길안내시 Zoom Level */
-    private int _naviZoom = 20;
+    private int _zoom = 17; ///< Main 화면 지도 Zoom Level
+    private int _routeZoom = 15; ///< 경로 탐색시 Zoom Level
+    private int _naviZoom = 20; ///< 길안내시 ZoomLevel
 
     /* URL 전달 */
-    public string directionStaticMapUrl { get; private set; }
-    public string naviMapUrl { get; private set; }
+    public string directionStaticMapUrl { get; private set; } ///< 경로 안내를 위한 구글 API URL
+    public string naviMapUrl { get; private set; } ///< 길안내를 위한 구글 API URL
 
     /**
      * @brief 장소 Place_Id를 저장
@@ -402,12 +410,16 @@ public class NaviData : MonoBehaviour
     }
     #endregion
 
+    #region Awake, Start, Update
     /**
      * @brief searchHistory.json 으로 파일 저장, 싱글톤 패턴, 위치 서비스 허용
+     * @details 파일 저장 = App이 실행되는 기기에 따라 다른 데이터 저장용 경로(여기선 searchHistory.json) 제공
      */
     void Awake()
     {
         StartCoroutine(StartLocationService());
+        /* App이 실행되는 기기에 따라 다른 데이터 저장용 경로 제공
+         * searchHistory.json 파일의 전체 경로를 생성 */
         filePath = Path.Combine(Application.persistentDataPath, "searchHistory.json");
         if (Instance == null)
         {
@@ -419,10 +431,12 @@ public class NaviData : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #endregion
 
     #region Search History 
     /**
      * @brief 검색기록 추가
+     * @details 해당 검색어를 placeId와 같이 리스트에 넣고 저장 Method 사용
      * @param[in] searchQuery 검색기록 이름 텍스트
      * @param[in] placeId 장소 ID
      */
@@ -438,16 +452,17 @@ public class NaviData : MonoBehaviour
 
     /**
      * @brief JsonData로 검색기록 저장
+     * @details 파일을 Json 데이터로 저장
      */
     public void SaveSearchHistory()
     {
         string jsonData = JsonUtility.ToJson(_searchHistoryData);
         File.WriteAllText(filePath, jsonData);
-        Debug.Log("저장됨");
     }
 
     /**
      * @brief 저장된 검색기록 로드
+     * @details 기존에 저장된 기록들 (검색 버튼을 통해서 누른 장소들) 찾아서 UI로 보여줌
      */
     public void LoadSearchHistory()
     {
@@ -456,7 +471,6 @@ public class NaviData : MonoBehaviour
             string json = File.ReadAllText(filePath);
             _searchHistoryData = JsonUtility.FromJson<SearchHistoryData>(json);
             UIController.Instance.DisplaySearchHistory(); 
-            Debug.Log("로드됨");
         }
         else
         {
@@ -466,9 +480,41 @@ public class NaviData : MonoBehaviour
     }
     #endregion
 
+    #region PlaceAPI Autocomplete
+    /**
+     * @brief 현재 위치를 기반으로 검색어와 비슷한 장소들을 자동완성하고 그 값을 main_text,  place_id를 받아옴
+     * @param[in] input 입력값(글자)
+     */
+    public IEnumerator GetPlaceAutocompleteData(string input)
+    {
+
+        double latitude = Input.location.lastData.latitude;
+        double longitude = Input.location.lastData.longitude;
+        int radius = 5000;
+
+        string autoUrl = $"https://maps.googleapis.com/maps/api/place/autocomplete/json?input={input}&location={latitude},{longitude}&radius={radius}&language=ko&key={Configuration.ApiKey}&components=country:kr";
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(autoUrl))
+        {
+            yield return webRequest.SendWebRequest();
+
+            if (webRequest.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("AutoWebError : " + webRequest.error);
+            }
+            else
+            {
+                //Debug.Log("json" + webRequest.downloadHandler.text);
+                UIController.Instance.UpdateButton(webRequest.downloadHandler.text);
+            }
+        }
+    }
+    #endregion
+
     #region PlaceAPI PlaceDetails
     /**
-     * @brief PlaceAPI 의 PlaceDetails 를 이용해서 place_id 를 이용해 field 값을 받아옴
+     * @brief 장소 ID 값을 이용해서 해당 장소의 위도, 경도, 주소, 이름 값 받아옴
+     * @details PlaceAPI PlaceDetails 이용
      * @param[in] placeId 장소 ID
      */
     public IEnumerator FetchPlaceInfo(string placeId)
@@ -480,7 +526,7 @@ public class NaviData : MonoBehaviour
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Place Details : " + webRequest.downloadHandler.text);
+                //Debug.Log("Place Details : " + webRequest.downloadHandler.text);
                 placeInfoResponse = JsonUtility.FromJson<PlaceDetailsResponse>(webRequest.downloadHandler.text);
                 destinationLocation = placeInfoResponse.result.geometry.location;
                 yield return MapView.Instance.UpdateDestination(destinationLocation);
@@ -492,6 +538,10 @@ public class NaviData : MonoBehaviour
         }
     }
 
+    /**
+     * @brief 장소 ID 값을 이용해서 해당 장소의 상세정보를 가져옴
+     * @details 가게 오픈 여부, 주소, 가게 번호, 웹사이트, 평점 등 제공, 특히 해당 주소는 string 형식으로 바꾸고 한국식 주소로 정렬 
+     */
     public IEnumerator FetchPlaceDetails(string placeId)
     {
         string detailsInfoUrl = $"https://maps.googleapis.com/maps/api/place/details/json?place_id={placeId}" +
@@ -504,7 +554,7 @@ public class NaviData : MonoBehaviour
 
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                Debug.Log("Place Info : " + webRequest.downloadHandler.text);
+                //Debug.Log("Place Info : " + webRequest.downloadHandler.text);
                 placeDetailsResponse = JsonUtility.FromJson<PlaceDetailsResponse>(webRequest.downloadHandler.text);
                 var addressComponents = placeDetailsResponse.result.address_components
                     .Where(ac => ac.types.Contains("administrative_area_level_1") ||
@@ -530,43 +580,16 @@ public class NaviData : MonoBehaviour
 
     #endregion
 
-    #region PlaceAPI Autocomplete
-    /**
-     * @brief 현재 위치를 기반으로 검색어와 비슷한 장소들을 자동완성하고 그 값을 main_text,  place_id를 받아옴
-     */
-    public IEnumerator GetPlaceAutocompleteData(string input)
-    {
-
-        double latitude = Input.location.lastData.latitude;
-        double longitude = Input.location.lastData.longitude;
-        int radius = 5000;
-        /* 검색 범위를 해당 국가로 제한 : Components= Korea:kr */
-
-        string autoUrl = $"https://maps.googleapis.com/maps/api/place/autocomplete/json?input={input}&location={latitude},{longitude}&radius={radius}&language=ko&key={Configuration.ApiKey}&components=country:kr";
-
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(autoUrl))
-        {
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError("AutoWebError : " + webRequest.error);
-            }
-            else
-            {
-                Debug.Log("json" + webRequest.downloadHandler.text);
-                UIController.Instance.UpdateButton(webRequest.downloadHandler.text);
-            }
-        }
-    }
-    #endregion
-
     #region DirectionAPI
+    /**
+     * @brief 출발지와 목적지 값을 받아와서 경로 표시
+     * @param[in] origin 출발지(현재위치)
+     * @param[in] destination 목적지 (목적지 설정한 장소)
+     */
     public IEnumerator GetDirection(string origin, Location destinantion)
     {
         string dest = string.Format("{0},{1}", destinantion.lat, destinantion.lng);
         string directionUrl = $"https://maps.googleapis.com/maps/api/directions/json?origin={origin}&destination={dest}&mode=transit&key={Configuration.ApiKey}";
-        Debug.Log($"출발지, 목적지 : {origin}, {dest}");
         using (UnityWebRequest www = UnityWebRequest.Get(directionUrl))
         {
             yield return www.SendWebRequest();
@@ -576,12 +599,18 @@ public class NaviData : MonoBehaviour
             }
             else
             {
-                Debug.Log("경로 : " +  www.downloadHandler.text);
+                //Debug.Log("경로 : " +  www.downloadHandler.text);
+                /* 해당 함수 불러옴 */
                 ProcessDirections(www.downloadHandler.text);
             }
         }
     }
     
+    /**
+     * @brief PolyLine을 이용하여 경로 생성
+     * @details DirectionAPI 에서 받은 PolyLine 들을 Decode 하여 Vector 목록으로 변환 후 각 좌표들을 문자열로 변환하고
+     * 하나의 문자열로 결합
+     */
     void ProcessDirections(string jsonData)
     {
         DirectionsResponse directionsResponse = JsonUtility.FromJson<DirectionsResponse>(jsonData);
@@ -590,7 +619,7 @@ public class NaviData : MonoBehaviour
             string encodedPolyline = directionsResponse.routes[0].overview_polyline.points;
             List<Vector2d> pathPoints = DecodePolyline(encodedPolyline);
             string pathString = string.Join("|", pathPoints.Select(p => $"{p.x},{p.y}"));
-
+            /* 경로 탐색시 사용되는 URL */
             directionStaticMapUrl =
                 $"https://maps.googleapis.com/maps/api/staticmap?size=640x640" +
                 $"&maptype=roadmap" +
@@ -599,6 +628,7 @@ public class NaviData : MonoBehaviour
                 $"&markers=color:purple|label:O|{Input.location.lastData.latitude},{Input.location.lastData.longitude}" +
                 $"&markers=color:red|label:D|{destinationLocation.lat},{destinationLocation.lng}" +
                 $"&key={Configuration.ApiKey}";
+            /* 길안내시 사용되는 URL */
             naviMapUrl =
                 $"&center={UnityWebRequest.UnEscapeURL(string.Format("{0}, {1}", Input.location.lastData.latitude, Input.location.lastData.longitude))}" +
                 $"&size=640x640" +
@@ -611,6 +641,11 @@ public class NaviData : MonoBehaviour
         }
     }
 
+    /**
+     * @brief 인코딩된 PolyLine 문자열을 디코딩하여 Vector2d 목록으로 변환
+     * @details 
+     * @param[in] encodedPoints 지리적 포인트를 포함하는 인코딩된 문자열
+     */
     List<Vector2d> DecodePolyline(string encodedPoints)
     {
         if (string.IsNullOrEmpty(encodedPoints)) return null;

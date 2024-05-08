@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     #region Variables
-    public static UIController Instance {  get; private set; }
+    public static UIController Instance {  get; private set; } ///< UIController.cs 싱글톤 패턴
 
 
     [Header("UI")]
-    public GameObject searchPanel;
-    public GameObject destinationPanel;
-    public GameObject routePanel;
-    public GameObject navigationPanel;
-    public GameObject placeDetailsPanel;
+    public GameObject searchPanel; ///< search UI
+    public GameObject destinationPanel; ///< destination UI
+    public GameObject routePanel; ///< route UI
+    public GameObject navigationPanel; ///<navigation UI
+    public GameObject placeDetailsPanel; ///< place Details UI
 
     [Header("Auto Complete & Search History")]
     public TMP_InputField inputField; ///< 검색기록 InputField
@@ -26,21 +26,22 @@ public class UIController : MonoBehaviour
     public GameObject autocompleteBackground; ///< 자동완성 관련 Panel
 
     [Header("Place Details Text")]
-    public TMP_Text placeName;
-    public TMP_Text phoneNumber;
-    public TMP_Text addressComponent;
-    public TMP_Text businessStatus;
-    public TMP_Text rating;
-    public TMP_Text UserRatingsTotal;
-    public TMP_Text website;
+    public TMP_Text placeName; ///< 장소 이름
+    public TMP_Text phoneNumber; ///< 전화번호
+    public TMP_Text addressComponent; ///< 주소
+    public TMP_Text businessStatus; ///< 영업 여부
+    public TMP_Text rating; ///< 평점
+    public TMP_Text UserRatingsTotal; ///< 평점에 참여한 사용자 수
+    public TMP_Text website; ///< 해당 장소의 웹사이트
 
+    private Coroutine _fetchPlaceInfoCoroutine; ///< 장소에 대한 지리적 정보 관리 코루틴
+    private Coroutine _fetchPlaceDetailsCoroutine; ///< 장소의 상세정보에 대한 관리 코루틴
+    private Coroutine _updateDestinationCoroutine; ///< 목적지 업데이트 관리 코루틴
 
-    private Coroutine _fetchPlaceInfoCoroutine;
-    private Coroutine _fetchPlaceDetailsCoroutine;
-    private Coroutine _updateDestinationCoroutine;
-
-    private bool _isNaviPanel = false;
-
+    private bool _isNaviPanel = false; ///< NaviPanel 활성화 여부
+    /**
+     * @brief 다른 스크립트에서 참조할 수 있도록 설정
+     */
     public bool IsNaviPanel
     {
         get { return _isNaviPanel; }
@@ -48,6 +49,7 @@ public class UIController : MonoBehaviour
     }
     #endregion
 
+    #region Awake, Start, Update
     /**
      * @brief 싱글톤 패턴
      */
@@ -64,19 +66,20 @@ public class UIController : MonoBehaviour
         }
     }
 
+    /**
+     * @brief Inputfield 입력에 따라 함수 실행
+     */
     void Start()
     {
         inputField.onValueChanged.AddListener(OnInputValueChanged);
     }
+    #endregion
 
-    void Update()
-    {
-    }
-
+    #region InputField Autocomplete
     /**
- * @brief InputField의 글자수에 따라 검색기록 및 자동완성 호출
- * @param[in] input InputField 값
- */
+     * @brief InputField의 글자수에 따라 검색기록 및 자동완성 호출
+     * @param[in] input InputField 값(글자)
+     */
     public void OnInputValueChanged(string input)
     {
         if (input.Length == 0)
@@ -108,27 +111,21 @@ public class UIController : MonoBehaviour
             Destroy(child.gameObject);
         }
     }
+    #endregion
 
     #region UI Onclick Button
-
+    /* UI에 할당할 버튼들 */
+    /**
+     * @brief 지도를 현재 위치로 돌아가게 함
+     */
     public void ReturnLocation()
     {
         MapView.Instance.currentCenter = Vector2d.zero;
         StartCoroutine(MapView.Instance.GetGoogleMap());
     }
-    public void StartFindDirection()
-    {
-        SetActiveDestinationPanel(false);
-        SetActiveRoutePanel(true);
-        StartCoroutine(CoroutineStartFindDirection());
-    }
-    IEnumerator CoroutineStartFindDirection()
-    {
-        string currentLocation = $"{Input.location.lastData.latitude},{Input.location.lastData.longitude}";
-        yield return StartCoroutine(NaviData.Instance.GetDirection(currentLocation, NaviData.Instance.destinationLocation));
-        yield return StartCoroutine(MapView.Instance.RouteMap(NaviData.Instance.directionStaticMapUrl));
-    }
-
+    /**
+     * @brief 목적지 이동 버튼
+     */
     public void OpenDestination()
     {
         SetActiveSearchPanel(false);
@@ -137,17 +134,44 @@ public class UIController : MonoBehaviour
     }
     IEnumerator CoroutineOpenDestiantion()
     {
+        /* 장소의 지리적 위치값 가져옴 */
         yield return _fetchPlaceInfoCoroutine = StartCoroutine(NaviData.Instance.FetchPlaceInfo(NaviData.Instance.PlaceId));
         yield return null;
+        /* 장소의 상세정보 가져옴 */
         yield return _fetchPlaceDetailsCoroutine = StartCoroutine(NaviData.Instance.FetchPlaceDetails(NaviData.Instance.PlaceId));
         yield return null;
+        /* 목적지 업데이트 */
         yield return _updateDestinationCoroutine = StartCoroutine(MapView.Instance.UpdateDestination(MapView.Instance._currentLocation));
         yield return null;
     }
 
+    /**
+     * @brief 경로 찾는 버튼
+     */
+    public void StartFindDirection()
+    {
+        SetActiveDestinationPanel(false);
+        SetActiveRoutePanel(true);
+        StartCoroutine(CoroutineStartFindDirection());
+    }
+    IEnumerator CoroutineStartFindDirection()
+    {
+        /* 현재 위치 */
+        string currentLocation = $"{Input.location.lastData.latitude},{Input.location.lastData.longitude}";
+        /* 경로 (PolyLine) 가져옴 */
+        yield return StartCoroutine(NaviData.Instance.GetDirection(currentLocation, NaviData.Instance.destinationLocation));
+        /* 지도에 경로 표시 */
+        yield return StartCoroutine(MapView.Instance.RouteMap(NaviData.Instance.directionStaticMapUrl));
+    }
+
+    /**
+     * @brief 길안내 시작 버튼
+     * @details NavigationPanel이 활성화 되면 이전 RoutePanel 비활성화 (정보 제대로 전달받기 위함)
+     */
     public void StartNavigation()
     {
         SetActiveNavigationPanel(true);
+        /* RoutePanel 에서의 경로와 현재위치를 토대로 경로 설정 후 AR Navigation 시작 */
         StartCoroutine(MapView.Instance.UseNavigation(NaviData.Instance.naviMapUrl));
 
         if (_isNaviPanel == true)
@@ -156,8 +180,12 @@ public class UIController : MonoBehaviour
         }
     }
 
+    /**
+     * @brief 뒤로가기 버튼 (DestinationPanel -> SearchPanel)
+     */
     public void ReturnSearch()
     {
+        /* 코루틴 멈춤 */
         if (_fetchPlaceInfoCoroutine != null)
         {
             StopCoroutine(_fetchPlaceInfoCoroutine);
@@ -177,13 +205,20 @@ public class UIController : MonoBehaviour
         SetActiveSearchPanel(true);
     }
 
+    /**
+     * @brief 뒤로가기 버튼 (NavigationPanel -> SearchPanel)
+     */
     public void ReturnHome()
     {
+        /* 코루틴 멈춤 */
         StopCoroutine(MapView.Instance.UseNavigation(NaviData.Instance.naviMapUrl));
         SetActiveNavigationPanel(false);
         SetActiveSearchPanel(true);
     }
-
+    
+    /**
+     * @brief 장소에서 Website 의 링크 생성
+     */
     public void CLickURL()
     {
         Application.OpenURL(NaviData.Instance.placeDetailsResponse.result.website);
@@ -214,7 +249,7 @@ public class UIController : MonoBehaviour
             {
                 inputField.text = prediction.structured_formatting.main_text;
                 NaviData.Instance.SetPlaceId(prediction.place_id);
-                Debug.Log("place_id" + prediction.place_id);
+                //Debug.Log("place_id" + prediction.place_id);
                 NaviData.Instance.AddSearchToHistory(prediction.structured_formatting.main_text, prediction.place_id);
             });
         }
@@ -277,39 +312,61 @@ public class UIController : MonoBehaviour
     #endregion
 
     #region Panel SetActive
+    /**
+     * @brief SearchPanel 활성화 여부
+     * @param[in] isActive True/false
+     */
     public void SetActiveSearchPanel(bool isActive)
     {
         searchPanel.SetActive(isActive);
     }
 
+    /**
+     * @brief DestinationPanel 활성화 여부
+     * @param[in] isActive True/false
+     */
     public void SetActiveDestinationPanel(bool isActive)
     {
         destinationPanel.SetActive(isActive);
     }
 
+    /**
+     * @brief RoutePanel 활성화 여부
+     * @param[in] isActive True/false
+     */
     public void SetActiveRoutePanel(bool isActive)
     {
         routePanel.SetActive(isActive);
     }
 
+    /**
+     * @brief NavigationPanel 활성화 여부
+     * @param[in] isActive True/false
+     */
     public void SetActiveNavigationPanel(bool isActive)
     {
         navigationPanel.SetActive(isActive);
     }
 
+    /**
+     * @brief 장소 상세보기 누를시 나오는 팝업창
+     */
     public void OpenPlaceDetailsPanel()
     {
         placeDetailsPanel.SetActive(true);
-        /* 해당 텍스트 정보들 입력해야 함 */
-        placeName.text = NaviData.Instance.placeInfoResponse.result.name;
-        phoneNumber.text = NaviData.Instance.placeDetailsResponse.result.formatted_phone_number;
-        addressComponent.text = NaviData.Instance.addressComponentsDescription;
-        businessStatus.text = NaviData.Instance.placeDetailsResponse.result.business_status;
-        rating.text = NaviData.Instance.placeDetailsResponse.result.rating.ToString();
-        UserRatingsTotal.text = NaviData.Instance.placeDetailsResponse.result.user_ratings_total.ToString();
-        website.text = NaviData.Instance.placeDetailsResponse.result.website;
+        /* 텍스트 정보 */
+        placeName.text = NaviData.Instance.placeInfoResponse.result.name; ///< 장소 이름
+        phoneNumber.text = NaviData.Instance.placeDetailsResponse.result.formatted_phone_number; ///< 전화번호
+        addressComponent.text = NaviData.Instance.addressComponentsDescription; ///< 주소
+        businessStatus.text = NaviData.Instance.placeDetailsResponse.result.business_status; ///< 운영 여부
+        rating.text = NaviData.Instance.placeDetailsResponse.result.rating.ToString(); ///< 평점
+        UserRatingsTotal.text = NaviData.Instance.placeDetailsResponse.result.user_ratings_total.ToString(); ///< 평점에 참여한 사용자 수
+        website.text = NaviData.Instance.placeDetailsResponse.result.website; ///< 웹사이트
     }
 
+    /**
+     * @brief 팝업창 닫기
+     */
     public void ClosePlaceDetailsPanel()
     {
         placeDetailsPanel.SetActive(false);

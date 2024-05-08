@@ -7,14 +7,14 @@ using UnityEngine.UI;
 public class MapView : MonoBehaviour
 {
     #region Variables
-    public static MapView Instance { get; private set; }
+    public static MapView Instance { get; private set; } ///< MapView.cs 싱글톤 패턴
 
 
     [Header("RawImage")]
-    public RawImage staticMapImage;
-    public RawImage destinationMapImage;
-    public RawImage routeMapImage;
-    public RawImage useNavigation;
+    public RawImage staticMapImage; ///< 기본 static Map 
+    public RawImage destinationMapImage; ///< 목적지 설정 지도 
+    public RawImage routeMapImage; ///< 경로 설정 지도
+    public RawImage useNavigation; ///< 길안내 지도
 
     [Header("Basic Zoom Level")]
     private int _zoom = 17; ///< 지도 Zoom = 17단계
@@ -26,31 +26,32 @@ public class MapView : MonoBehaviour
     [Header("Drag & Zoom speed")]
     private double _orthoZoomSpeed = 0.05; ///< 2D 확대/축소 속도
     public RawImage MapTouchRange;  ///< 드래그, 확대/축소 허용 범위
-    private RectTransform _mapRectTransform;
+    private RectTransform _mapRectTransform; ///< 터치 범위 설정
 
     public Location _currentLocation { get; private set; } ///< geometry 값
 
-    private Vector2d _previousDistance;
-    public Vector2d currentCenter;
+    public Vector2d currentCenter; ///< 현재 center 값
 
     [Header("Map Move")]
-    private static int _zoomLevel;
-    private static double _circumference;
-    private static double _radius;
-    private static Vector2d _centre;
-    private static bool _mplslnit = false;
+    private static int _zoomLevel; ///< 드래그 및 확대 축소시 Zoom Level
+    private static double _circumference; ///< 둘레
+    private static double _radius; ///< 반지름
+    private static Vector2d _centre; ///< 중앙
 
     [Header("Mouse Position")]
-    public RawImage rawImage;
-    private Vector3 touchPosition;
-    public int imageSize = 640;
-    Vector2d shiftedCentre = new Vector2d(0, 0);
-    private Vector2d startLatLng;
-    private Vector2d endLatLng;
-    private Vector2d currentLatLng;
+    public RawImage rawImage; ///< 터치 제한할 범위
+    public int imageSize = 640; ///< 지도 사이즈
+    Vector2d shiftedCentre = new Vector2d(0, 0); ///< vector2d (0, 0) 으로 설정
+    private Vector2d startLatLng; ///< 터치 시작 위도 경도
+    private Vector2d endLatLng; ///< 터치 끝 위도 경도
+    private Vector2d currentLatLng; ///< 터치 중 위도 경도
 
     #endregion
 
+    #region Awake, Start, Update
+    /**
+     * @brief 싱글톤 패턴
+     */
     void Awake()
     {
         if (Instance == null)
@@ -63,11 +64,13 @@ public class MapView : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private Coroutine _getgooglemap = null;
+    private Coroutine _getgooglemap = null; ///< 구글맵 관리하는 코루틴
 
 
     /**
-     * @brief 맵 터치 범위 정하기 위해 RectTransform 컴포넌트 할당, 
+     * @brief 맵 터치 범위 정하기 위해 RectTransform 컴포넌트 할당
+     *        MercatorProjection 적용
+     *        구글맵 불러옴
      */
     void Start()
     {
@@ -76,13 +79,20 @@ public class MapView : MonoBehaviour
         StartGoogleMap();
     }
 
+    /**
+     * @brief 드래그 및 줌 인아웃
+     */
     void Update()
     {
-        TestDrag();
+        OnTouchDrag();
         OnTouchZoom();
     }
+    #endregion
 
     #region Mercator
+    /**
+     * @brief Mercator 투영법 초기화 및 현재 위치를 지도에 맞게 설정
+     */
     public void InitializeMercatorProjection()
     {
         MercatorProjection_Setting(_zoom);
@@ -97,6 +107,10 @@ public class MapView : MonoBehaviour
         shiftedCentre = new Vector2d(x, y);
     }
 
+    /**
+     * @brief 지도의 확대 레벨에 따라 Mercator 투영의 설정 초기화
+     * @param[in] zoomLevel 줌 레벨
+     */
     public static void MercatorProjection_Setting(int zoomLevel)
     {
         _zoomLevel = zoomLevel;
@@ -107,6 +121,10 @@ public class MapView : MonoBehaviour
 
     }
 
+    /**
+     * @brief 경도를 x 좌표로 변환
+     * @param[in] longDegrees 경도
+     */
     public static double GetXFromLongitude(double longDegrees)
     {
         double x = 0;
@@ -118,6 +136,10 @@ public class MapView : MonoBehaviour
         return x;
     }
 
+    /**
+     * @brief x 좌표를 경도로 변환
+     * @param[in] xValue x 값
+     */
     public static double GetLongitudeFromX(double xValue)
     {
         double longitude = 0;
@@ -131,6 +153,10 @@ public class MapView : MonoBehaviour
         return longitude;
     }
 
+    /**
+     * @brief 위도를 y 좌표로 변환
+     * @param[in] latDegrees 위도
+     */
     public static double GetYFromLatitude(double latDegrees)
     {
         double y = 0;
@@ -143,6 +169,11 @@ public class MapView : MonoBehaviour
 
         return y;
     }
+    
+    /**
+     * @brief x 좌표를 위도로 변환
+     * @param[in] yValue y 값
+     */
     public static double GetLatitudeFromY(double yValue)
     {
         double latitude = 0;
@@ -164,7 +195,10 @@ public class MapView : MonoBehaviour
     #endregion
 
     #region Drag & Zoom
-    public void TestDrag() 
+    /**
+     * @brief 드래그
+     */
+    public void OnTouchDrag() 
     {
         MercatorProjection_Setting(_zoom);
         if (Input.touchCount == 1)
@@ -179,31 +213,25 @@ public class MapView : MonoBehaviour
                     Vector3 n = new Vector3(
                               (localCursor.x - _mapRectTransform.rect.min.x) / _mapRectTransform.rect.width * imageSize,
                                imageSize - ((localCursor.y - _mapRectTransform.rect.min.y) / _mapRectTransform.rect.height * imageSize), 0.0f);
-                    Debug.Log("터치 위치 : " + n);
 
                     currentLatLng = new Vector2d(GetLongitudeFromX(-n.x + shiftedCentre.x),
                                                  GetLatitudeFromY(-n.y + shiftedCentre.y));
-                    Debug.Log($"currentLatLng 위도 값 " + currentLatLng.y);
 
+                    /* 각 터치 마다 경도 위도값 구해서 (마지막 터치 - 처음 터치) 그 이동만큼 center 값에 더함*/
                     switch (touch.phase)
                     {
                         case TouchPhase.Began:
                             startLatLng = currentLatLng;
-                            Debug.Log($"경도 : {startLatLng.x}, 위도 : {startLatLng.y}");
                             break;
                         case TouchPhase.Moved:
                             Vector2d intermDelta = currentLatLng - startLatLng;
-                            Debug.Log($"이동 중 경도 : {intermDelta.x}, 위도 : {intermDelta.y}");
                             break;
                         case TouchPhase.Ended:
                             endLatLng = currentLatLng;
 
                             Vector2d delta = endLatLng - startLatLng;
-                            Debug.Log($"Delta : 경도 {delta.x}, 위도 {delta.y}");
                             if (delta.x != 0 || delta.y != 0)
                             {
-                                Debug.Log($"맵 이동 거리 : 경도 {delta.x}, 위도 {delta.y}");
-                                Debug.Log($"currentCenterX : {currentCenter.x},currentCenterY : {currentCenter.y}");
                                 currentCenter += delta;
                                 StartCoroutine(GetGoogleMap());
                             }
@@ -214,7 +242,9 @@ public class MapView : MonoBehaviour
         }
     }
 
-    /* 확대 축소 */
+    /**
+     * @brief 확대 축소
+     */
     public void OnTouchZoom()
     {
         MercatorProjection_Setting(_zoom);
@@ -247,7 +277,9 @@ public class MapView : MonoBehaviour
     #endregion
 
     #region DrawGetStaticMap
-
+    /**
+     * @brief 처음 시작할때 currentCenter 값 초기화하고 맵을 불러옴 => 현재 위치의 지도가 불러와짐
+     */
     public void StartGoogleMap()
     {
         currentCenter = Vector2d.zero;
@@ -270,7 +302,7 @@ public class MapView : MonoBehaviour
             markers +
             $"&key={Configuration.ApiKey}";
 
-        Debug.Log($"center 값 체크 : {currentCenter.x}, {currentCenter.y}");
+        //Log($"center 값 체크 : {currentCenter.x}, {currentCenter.y}");
 
         var www = UnityWebRequestTexture.GetTexture(Configuration.BaseUrl + query);
 
@@ -317,7 +349,7 @@ public class MapView : MonoBehaviour
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("www 에러" + www.error);
-            Debug.Log(Configuration.BaseUrl + query);
+            //Debug.Log(Configuration.BaseUrl + query);
         }
         else
         {
@@ -329,7 +361,10 @@ public class MapView : MonoBehaviour
     #endregion
 
     #region DrawFindDirectionMap
-
+    /**
+     * @brief 경로를 찾은 데이터를 지도로 표시
+     * @param[in] url 해당 구글 API URL
+     */
     public IEnumerator RouteMap(string url)
     {
         var www = UnityWebRequestTexture.GetTexture(url);
@@ -339,7 +374,7 @@ public class MapView : MonoBehaviour
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("www 에러" + www.error);
-            Debug.Log(url);
+            //Debug.Log(url);
         }
         else
         {
@@ -350,6 +385,10 @@ public class MapView : MonoBehaviour
     #endregion
 
     #region DrawNavigation
+    /**
+     * @brief 길안내시 나오는 Google Static Map
+     * @param[in] url 해당 구글 API URL
+     */
     public IEnumerator UseNavigation(string url)
     {
         var www = UnityWebRequestTexture.GetTexture(Configuration.BaseUrl + url);
@@ -358,7 +397,7 @@ public class MapView : MonoBehaviour
 
         if (www.result != UnityWebRequest.Result.Success)
         {
-            Debug.Log(url);
+            //Debug.Log(url);
             UIController.Instance.IsNaviPanel = false;
         }
         else
