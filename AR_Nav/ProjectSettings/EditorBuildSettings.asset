@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: "Assets/Scenes/BR_UI 1-1(\uC704\uCE58\uC815\uBCF4\uD5C8\uC6A9 \uD31D\uC5C5).unity"
     guid: 82743ffa00d283c4283de922010729f2
   - enabled: 1
-    path: "Assets/Scenes/BR_UI 0(\uD1B5\uD569).unity"
+    path: Assets/Scenes/BR_UI 0.unity
     guid: 328af2ed2d169d744a72449f70b0118d
   - enabled: 1
     path: Assets/Scenes/BR_UI 2(LocalMark).unity

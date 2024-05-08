@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 6527944245288672020}
   - component: {fileID: 7366990178402583334}
   m_Layer: 5
-  m_Name: "Panel8(\uCE74\uBA54\uB77C\uD5C8\uC6A9ar\uAE38\uC548\uB0B4)"
+  m_Name: Panel9(AR Nav)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

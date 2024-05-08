@@ -953,8 +953,7 @@ GameObject:
   - component: {fileID: 3870187584600300627}
   - component: {fileID: 7427907464723692013}
   m_Layer: 5
-  m_Name: "Panel6(\uCD9C\uBC1C \uB3C4\uCC29\uC9C0\uC758 \uC0C1\uC138\uC124\uBA85\uACFC
-    \uC9C0\uB3C4ar\uBC84\uD2BC)"
+  m_Name: Panel6(Depart Arrive)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

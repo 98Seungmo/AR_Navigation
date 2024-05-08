@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 8811688694848860023}
   - component: {fileID: 7074673094668460224}
   m_Layer: 5
-  m_Name: "Panel4(\uCD5C\uADFC \uBAA9\uC801\uC9C0.\uAC80\uC0C9\uAE30\uB2A5)"
+  m_Name: Panel4(recent Search)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

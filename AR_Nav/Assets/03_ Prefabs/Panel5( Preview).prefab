@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 9148914376348090698}
   - component: {fileID: 3231022465817225051}
   m_Layer: 5
-  m_Name: "Panel5(\uBAA9\uC801\uC9C0 \uBBF8\uB9AC\uBCF4\uAE30)"
+  m_Name: Panel5( Preview)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

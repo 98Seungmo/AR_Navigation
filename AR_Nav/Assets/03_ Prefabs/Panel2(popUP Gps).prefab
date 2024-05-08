@@ -966,12 +966,12 @@ GameObject:
   - component: {fileID: 9179580234854621551}
   - component: {fileID: 2397345975943416486}
   m_Layer: 5
-  m_Name: "Panel2(\uC704\uCE58\uC815\uBCF4\uC811\uADFC \uD31D\uC5C5)"
+  m_Name: Panel2(popUP Gps)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6978750487260263845
 RectTransform:
   m_ObjectHideFlags: 0
