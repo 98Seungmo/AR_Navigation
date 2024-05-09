@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\users\\lkj\\documents\\github\\ar_navigation\\testar\\assets\\02_scripts\\sm\\geospatialmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\02_scripts\\sm\\geospatialmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D085D838-9264-3B1F-4BD4-5589EF5CF482}|Assembly-CSharp.csproj|C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\assets\\02_scripts\\kj\\mapview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D085D838-9264-3B1F-4BD4-5589EF5CF482}|Assembly-CSharp.csproj|solutionrelative:assets\\02_scripts\\kj\\mapview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D085D838-9264-3B1F-4BD4-5589EF5CF482}|Assembly-CSharp.csproj|C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\assets\\scripts\\artest\\geospatialmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D085D838-9264-3B1F-4BD4-5589EF5CF482}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\artest\\geospatialmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D085D838-9264-3B1F-4BD4-5589EF5CF482}|Assembly-CSharp.csproj|C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\assets\\02_scripts\\kj\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D085D838-9264-3B1F-4BD4-5589EF5CF482}|Assembly-CSharp.csproj|solutionrelative:assets\\02_scripts\\kj\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\Scenes\\ProtoType\\Scripts\\NaviData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scenes\\ProtoType\\Scripts\\NaviData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\Scenes\\ProtoType\\Scripts\\UIController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scenes\\ProtoType\\Scripts\\UIController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D085D838-9264-3B1F-4BD4-5589EF5CF482}|Assembly-CSharp.csproj|c:\\users\\lkj\\documents\\github\\ar_navigation\\testar\\assets\\02_scripts\\kj\\navidata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D085D838-9264-3B1F-4BD4-5589EF5CF482}|Assembly-CSharp.csproj|solutionrelative:assets\\02_scripts\\kj\\navidata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,55 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 198,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "GeospatialManager.cs",
-              "DocumentMoniker": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\02_Scripts\\SM\\GeospatialManager.cs",
-              "RelativeDocumentMoniker": "Assets\\02_Scripts\\SM\\GeospatialManager.cs",
-              "ToolTip": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\02_Scripts\\SM\\GeospatialManager.cs",
-              "RelativeToolTip": "Assets\\02_Scripts\\SM\\GeospatialManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "NaviData.cs",
+              "DocumentMoniker": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\02_Scripts\\KJ\\NaviData.cs",
+              "RelativeDocumentMoniker": "Assets\\02_Scripts\\KJ\\NaviData.cs",
+              "ToolTip": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\02_Scripts\\KJ\\NaviData.cs",
+              "RelativeToolTip": "Assets\\02_Scripts\\KJ\\NaviData.cs",
+              "ViewState": "AQIAACECAAAAAAAAAAAgwOMBAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T00:40:59.698Z",
+              "WhenOpened": "2024-05-09T01:35:55.934Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "GeospatialManager.cs",
-              "DocumentMoniker": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\Scripts\\ARTest\\GeospatialManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\ARTest\\GeospatialManager.cs",
-              "ToolTip": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\Scripts\\ARTest\\GeospatialManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\ARTest\\GeospatialManager.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-09T00:39:30.111Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "NaviData.cs",
-              "DocumentMoniker": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\Scenes\\ProtoType\\Scripts\\NaviData.cs",
-              "RelativeDocumentMoniker": "Assets\\Scenes\\ProtoType\\Scripts\\NaviData.cs",
-              "ToolTip": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\Scenes\\ProtoType\\Scripts\\NaviData.cs",
-              "RelativeToolTip": "Assets\\Scenes\\ProtoType\\Scripts\\NaviData.cs",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-22T06:01:22.289Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "UIController.cs",
-              "DocumentMoniker": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\Scenes\\ProtoType\\Scripts\\UIController.cs",
-              "RelativeDocumentMoniker": "Assets\\Scenes\\ProtoType\\Scripts\\UIController.cs",
-              "ToolTip": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\Scenes\\ProtoType\\Scripts\\UIController.cs",
-              "RelativeToolTip": "Assets\\Scenes\\ProtoType\\Scripts\\UIController.cs",
-              "ViewState": "AQIAAOUAAAAAAAAAAAAUwOkAAAAHAAAA",
+              "DocumentMoniker": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\02_Scripts\\KJ\\UIController.cs",
+              "RelativeDocumentMoniker": "Assets\\02_Scripts\\KJ\\UIController.cs",
+              "ToolTip": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\02_Scripts\\KJ\\UIController.cs",
+              "RelativeToolTip": "Assets\\02_Scripts\\KJ\\UIController.cs",
+              "ViewState": "AQIAAGQAAAAAAAAAAAAQwAIBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-24T14:07:15.322Z",
+              "WhenOpened": "2024-05-09T01:35:19.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MapView.cs",
+              "DocumentMoniker": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\02_Scripts\\KJ\\MapView.cs",
+              "RelativeDocumentMoniker": "Assets\\02_Scripts\\KJ\\MapView.cs",
+              "ToolTip": "C:\\Users\\LKJ\\Documents\\GitHub\\AR_Navigation\\TestAR\\Assets\\02_Scripts\\KJ\\MapView.cs",
+              "RelativeToolTip": "Assets\\02_Scripts\\KJ\\MapView.cs",
+              "ViewState": "AQIAAMAAAAAAAAAAAAAswAUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-09T01:35:09.563Z",
               "EditorCaption": ""
             }
           ]

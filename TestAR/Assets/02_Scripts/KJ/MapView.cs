@@ -380,7 +380,6 @@ public class MapView : MonoBehaviour
         {
             routeMapImage.texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
         }
-
     }
     #endregion
 

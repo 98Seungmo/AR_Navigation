@@ -161,7 +161,7 @@ public class UIController : MonoBehaviour
         /* 경로 (PolyLine) 가져옴 */
         yield return StartCoroutine(NaviData.Instance.GetDirection(currentLocation, NaviData.Instance.destinationLocation));
         /* 지도에 경로 표시 */
-        yield return StartCoroutine(MapView.Instance.RouteMap(NaviData.Instance.directionStaticMapUrl));
+        yield return StartCoroutine(MapView.Instance.RouteMap(NaviData.Instance.DirectionStaticMapUrl));
     }
 
     /**
@@ -172,7 +172,7 @@ public class UIController : MonoBehaviour
     {
         SetActiveNavigationPanel(true);
         /* RoutePanel 에서의 경로와 현재위치를 토대로 경로 설정 후 AR Navigation 시작 */
-        StartCoroutine(MapView.Instance.UseNavigation(NaviData.Instance.naviMapUrl));
+        StartCoroutine(MapView.Instance.UseNavigation(NaviData.Instance.NaviMapUrl));
 
         if (_isNaviPanel == true)
         {
@@ -211,7 +211,7 @@ public class UIController : MonoBehaviour
     public void ReturnHome()
     {
         /* 코루틴 멈춤 */
-        StopCoroutine(MapView.Instance.UseNavigation(NaviData.Instance.naviMapUrl));
+        StopCoroutine(MapView.Instance.UseNavigation(NaviData.Instance.NaviMapUrl));
         SetActiveNavigationPanel(false);
         SetActiveSearchPanel(true);
     }
