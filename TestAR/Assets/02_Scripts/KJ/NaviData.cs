@@ -397,8 +397,8 @@ public class NaviData : MonoBehaviour
     private int _naviZoom = 20; ///< 길안내시 ZoomLevel
 
     /* URL 전달 */
-    public string directionStaticMapUrl { get; private set; } ///< 경로 안내를 위한 구글 API URL
-    public string naviMapUrl { get; private set; } ///< 길안내를 위한 구글 API URL
+    public string DirectionStaticMapUrl { get; private set; } ///< 경로 안내를 위한 구글 API URL
+    public string NaviMapUrl { get; private set; } ///< 길안내를 위한 구글 API URL
 
     /**
      * @brief 장소 Place_Id를 저장
@@ -620,8 +620,7 @@ public class NaviData : MonoBehaviour
             List<Vector2d> pathPoints = DecodePolyline(encodedPolyline);
             string pathString = string.Join("|", pathPoints.Select(p => $"{p.x},{p.y}"));
             /* 경로 탐색시 사용되는 URL */
-            directionStaticMapUrl =
-                $"https://maps.googleapis.com/maps/api/staticmap?size=640x640" +
+            DirectionStaticMapUrl = $"https://maps.googleapis.com/maps/api/staticmap?&size=640x640" +
                 $"&maptype=roadmap" +
                 $"&zoom={_routeZoom}" +
                 $"&path={pathString}" +
@@ -629,7 +628,7 @@ public class NaviData : MonoBehaviour
                 $"&markers=color:red|label:D|{destinationLocation.lat},{destinationLocation.lng}" +
                 $"&key={Configuration.ApiKey}";
             /* 길안내시 사용되는 URL */
-            naviMapUrl =
+            NaviMapUrl =
                 $"&center={UnityWebRequest.UnEscapeURL(string.Format("{0}, {1}", Input.location.lastData.latitude, Input.location.lastData.longitude))}" +
                 $"&size=640x640" +
                 $"&zoom={_naviZoom}" +

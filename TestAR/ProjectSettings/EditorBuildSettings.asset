@@ -6,8 +6,46 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/01_Scenes/KJ/ARProtoType.unity
+    path: Assets/01_Scenes/BR/ARProtoType.unity
     guid: 62a0a2b15b608d14a91e6f719ffe84c4
+  - enabled: 0
+    path: Assets/01_Scenes/BR/BR_UI 0.unity
+    guid: 328af2ed2d169d744a72449f70b0118d
+  - enabled: 0
+    path: Assets/01_Scenes/BR/BR_UI 1(Loading).unity
+    guid: eab114d282f413046af39af154772593
+  - enabled: 0
+    path: "Assets/01_Scenes/BR/BR_UI 1-1(\uC704\uCE58\uC815\uBCF4\uD5C8\uC6A9 \uD31D\uC5C5).unity"
+    guid: 82743ffa00d283c4283de922010729f2
+  - enabled: 0
+    path: Assets/01_Scenes/BR/BR_UI 2(LocalMark).unity
+    guid: 4687c1386c3f66042baca0ccb3e6f0af
+  - enabled: 0
+    path: Assets/01_Scenes/BR/BR_UI 3(Search).unity
+    guid: e39bcf1420467a64984d8d466df94e0d
+  - enabled: 0
+    path: "Assets/01_Scenes/BR/BR_UI 4(\uBAA9\uC801\uC9C0 \uD504\uB9AC\uBDF0).unity"
+    guid: f3523d4a502ed344d85e434e76abcf2a
+  - enabled: 0
+    path: Assets/01_Scenes/BR/BR_UI 5(Journey Information).unity
+    guid: 8204003afe7af044d8757c270ac12ab9
+  - enabled: 0
+    path: "Assets/01_Scenes/BR/BR_UI 5-1(\uCD5C\uC801\uAC70\uB9AC \uAE38 \uC548\uB0B4
+      2D).unity"
+    guid: 5a2678ce3a9e3da4b8df4ebd4d123c59
+  - enabled: 0
+    path: "Assets/01_Scenes/BR/BR_UI 5-2-6(\uCE74\uBA54\uB77C\uC811\uADFC\uD5C8\uC6A9
+      \uD31D\uC5C5).unity"
+    guid: 541fee3df199f114698ade85a6104aec
+  - enabled: 0
+    path: "Assets/01_Scenes/BR/BR_UI 6(AR\uAE38 \uC548\uB0B4).unity"
+    guid: b9dd4ac52baf0ec48abb31def5b1f142
+  - enabled: 0
+    path: "Assets/01_Scenes/BR/BR_UI 6(AR\uAE38 \uC548\uB0B4) 1.unity"
+    guid: f01814a76c671ad4ebe2b580b25a8eb3
+  - enabled: 0
+    path: "Assets/01_Scenes/BR/BR_UI 7(\uBAA9\uC801\uC9C0 \uB3C4\uCC29).unity"
+    guid: 00efd26cd2867f344acb51f758408311
   m_configObjects:
     UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 6c2c602398d4f4046b9e8a5bada44f50, type: 2}
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 1b201bc7c4d735948a58135cd9ffccd7, type: 2}

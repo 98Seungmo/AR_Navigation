@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.cesium.unity": {
-      "version": "file:C:/Users/LKJ/Downloads/com.cesium.unity-1.9.0.tgz",
+      "version": "file:C:/Users/USER/Downloads/com.cesium.unity-1.9.0.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {
@@ -21,6 +21,13 @@
         "com.unity.xr.arkit": "4.1.5"
       },
       "hash": "a7adcde95fc45832551ea939db3d6876a7365b7b"
+    },
+    "com.nobi.roundedcorners": {
+      "version": "https://github.com/kirevdokimov/Unity-UI-Rounded-Corners.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "06c20cafa885cbb9f14791c269cda6b547e0be30"
     },
     "com.unity.collab-proxy": {
       "version": "2.3.1",

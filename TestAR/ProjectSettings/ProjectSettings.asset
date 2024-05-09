@@ -138,6 +138,10 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   bundleVersion: 0.1
   preloadedAssets:
+  - {fileID: 7265923149689012020, guid: 2c2dcf2c66577ba4eba0391fe8a017f8, type: 2}
+  - {fileID: 11400000, guid: 9d06fbcea16747c4a83a804232e58a0a, type: 2}
+  - {fileID: 4800000, guid: c9f956787b1d945e7b36e0516201fc76, type: 3}
+  - {fileID: 4800000, guid: 0945859e5a1034c2cb6dce53cb4fb899, type: 3}
   - {fileID: 11400000, guid: 070f22d3f3562ed4fa2f3e99d35c1c05, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -160,6 +164,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.DefaultCompany.TestAR
+    Standalone: com.DefaultCompany.TestAR
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -868,7 +873,7 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: TestAR
-  metroPackageVersion: 
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -876,7 +881,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: TestAR
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: TestAR
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
