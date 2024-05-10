@@ -1,7 +1,8 @@
 {
   "dependencies": {
-    "com.cesium.unity": "file:C:/Users/LKJ/Downloads/com.cesium.unity-1.9.0.tgz",
+    "com.cesium.unity": "file:C:/Users/USER/Downloads/com.cesium.unity-1.9.0.tgz",
     "com.google.ar.core.arfoundation.extensions": "https://github.com/google-ar/arcore-unity-extensions.git",
+    "com.nobi.roundedcorners": "https://github.com/kirevdokimov/Unity-UI-Rounded-Corners.git",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.development": "1.0.1",
     "com.unity.nuget.newtonsoft-json": "3.2.1",
